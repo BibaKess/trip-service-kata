@@ -1,84 +1,60 @@
 package org.craftedsw.tripservicekata.trip;
 
-import java.util.ArrayList;
+import junit.framework.Assert;
+import org.assertj.core.api.Assertions;
+import org.craftedsw.tripservicekata.exception.UserNotLoggedInException;
+import org.craftedsw.tripservicekata.user.User;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+
+import java.util.Arrays;
 import java.util.List;
 
-import org.craftedsw.tripservicekata.user.User;
-import org.craftedsw.tripservicekata.user.UserNotLoggedInException;
-import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
-
 public class TripServiceTest {
-	
-	@Test
-	public void check_user_not_logged() throws Exception {
-		TripService tripService = new TripService();
-		User user = new User();
-		
-		Assertions.assertThrows(UserNotLoggedInException.class, ()->tripService.getTripsByUser(user , null));
-	}
-	
-	@Test
-	public void check_user_logged_with_empty_tripList() throws Exception {
-		TripService tripService = new TripService() {
-			@Override
-			protected List<Trip> getUserTripList(User user) {
-				return new ArrayList<Trip>();
-			}
-		};
-		
-		User user = new User();
-		User loggedUser = new User();
-		user.addFriend(loggedUser);
+    private static final Trip ROME = new Trip();
+    private static final Trip CORSE = new Trip();
+    TripService tripService = Mockito.spy(new TripService());
+    User guest = null;
+    User viewer = new User();
+    User traveler = new User();
 
-		List<Trip> result = tripService.getTripsByUser(user , loggedUser);
-		
-		Assertions.assertEquals(0, result.size());
-	}
-	
-	
-	
-	@Test
-	public void check_user_logged_is_friend_with_not_empty_tripList() throws Exception {
-		List<Trip> userTripList = new ArrayList<Trip>();
-		userTripList.add(new Trip());
-		
-		TripService tripService = new TripService() {
-			@Override
-			protected List<Trip> getUserTripList(User user) {
-				return userTripList;
-			}
-		};
-		
-		User user = new User();
-		User loggedUser = new User();
-		user.addFriend(loggedUser);
+    @Test(expected = UserNotLoggedInException.class)
+    public void guestsCantSeeTrips() throws Exception {
+        Mockito.doReturn(guest).when(tripService).getLoggedUser();
 
-		List<Trip> result = tripService.getTripsByUser(user , loggedUser);
-		
-		Assertions.assertEquals(userTripList, result);
-		Assertions.assertEquals(1, result.size());
-	}
-	
-	@Test
-	public void check_user_logged_is_not_friend_with_not_empty_tripList() throws Exception {
-		List<Trip> userTripList = new ArrayList<Trip>();
-		userTripList.add(new Trip());
-		
-		TripService tripService = new TripService() {
-			@Override
-			protected List<Trip> getUserTripList(User user) {
-				return userTripList;
-			}
-		};
-		
-		User user = new User();
-		User loggedUser = new User();
-		user.addFriend(new User());
+        User notImportant = null;
+        tripService.getTripsByUser(notImportant, guest);
+    }
 
-		List<Trip> result = tripService.getTripsByUser(user , loggedUser);
-		
-		Assertions.assertNotEquals(userTripList, result);
-		Assertions.assertEquals(0, result.size());
-	}
+    @Test
+    public void viewerCantSeeTripsWhenTravelerHasNoFriends() throws Exception {
+
+        List<Trip> trips = tripService.getTripsByUser(traveler, viewer);
+
+        Assertions.assertThat(trips).isEmpty();
+    }
+
+    @Test
+    public void viewerCantSeeTripsOfTravelersHeIsNotFriendsWith() throws Exception {
+        traveler.addFriend(new User());
+
+        List<Trip> trips = tripService.getTripsByUser(traveler, viewer);
+
+        Assertions.assertThat(trips).isEmpty();
+    }
+
+    @Test
+    public void viewerCanSeeTripsWhenFriendsWithTraveler() throws Exception {
+        List<Trip> trips = Arrays.asList(CORSE, ROME);
+        Mockito.doReturn(trips).when(tripService).findTripsByUser(traveler);
+
+        traveler.addFriend(viewer);
+
+        List<Trip> visibleTrips = tripService.getTripsByUser(traveler, viewer);
+
+        Assertions.assertThat(visibleTrips).isEqualTo(trips);
+
+
+    }
 }
