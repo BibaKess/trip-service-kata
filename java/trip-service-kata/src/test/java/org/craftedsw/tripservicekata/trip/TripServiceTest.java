@@ -11,6 +11,7 @@ import org.mockito.Mockito;
  class TripServiceTest {
     private static final Trip ROME = new Trip();
     private static final Trip CORSE = new Trip();
+     TripDAO tripDAO = Mockito.mock(TripDAO.class);
     TripService tripService = new TripService();
     User guest = null;
     User viewer = new User();
