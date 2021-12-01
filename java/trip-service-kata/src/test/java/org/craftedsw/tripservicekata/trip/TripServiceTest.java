@@ -11,7 +11,7 @@ import org.mockito.Mockito;
  class TripServiceTest {
     private static final Trip ROME = new Trip();
     private static final Trip CORSE = new Trip();
-    TripService tripService = Mockito.spy(new TripService());
+    TripService tripService = new TripService();
     User guest = null;
     User viewer = new User();
     User traveler = new User();
