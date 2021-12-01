@@ -39,11 +39,12 @@ public class TripServiceTest {
 	
 	@Test
 	public void check_user_logged_with_not_empty_tripList() throws Exception {
+		List<Trip> usertripList = new ArrayList<Trip>();
+		usertripList.add(new Trip());
+		
 		TripService tripService = new TripService() {
 			@Override
 			protected List<Trip> getUserTripList(User user) {
-				List<Trip> usertripList = new ArrayList<Trip>();
-				usertripList.add(new Trip());
 				return usertripList;
 			}
 		};
