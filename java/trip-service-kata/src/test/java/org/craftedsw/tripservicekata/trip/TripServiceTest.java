@@ -22,7 +22,7 @@ public class TripServiceTest {
     public void guestsCantSeeTrips() throws Exception {
 
         User notImportant = null;
-        tripService.getTripsByUser(notImportant, guest);
+        Assertions.assertThatThrownBy(() -> tripService.getTripsByUser(notImportant, guest));
     }
 
     @Test
