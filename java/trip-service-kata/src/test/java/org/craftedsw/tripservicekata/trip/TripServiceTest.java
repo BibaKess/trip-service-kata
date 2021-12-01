@@ -1,14 +1,12 @@
 package org.craftedsw.tripservicekata.trip;
 
-import org.assertj.core.api.Assertions;
-import org.craftedsw.tripservicekata.user.UserNotLoggedInException;
-import org.craftedsw.tripservicekata.user.User;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-
 import java.util.Arrays;
 import java.util.List;
+
+import org.assertj.core.api.Assertions;
+import org.craftedsw.tripservicekata.user.User;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 public class TripServiceTest {
     private static final Trip ROME = new Trip();
