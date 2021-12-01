@@ -27,10 +27,11 @@ public class TripService {
 				}
 			}
 			
+			List<Trip> tripList = new ArrayList<Trip>();
 			if (isFriend) {
-				List<Trip> tripList tripList = getUserTripList(user);
+				tripList = ;
 			}
-			return tripList;
+			return isFrien;
 		} else {
 			throw new UserNotLoggedInException();
 		}
