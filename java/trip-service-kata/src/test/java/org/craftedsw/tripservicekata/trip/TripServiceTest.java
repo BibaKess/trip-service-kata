@@ -19,7 +19,25 @@ public class TripServiceTest {
 	}
 	
 	@Test
-	public void check_user_logged_with_empty_tripList() throws Exception {
+	public void check_user_logged_is_friend_with_empty_tripList() throws Exception {
+		TripService tripService = new TripService() {
+			@Override
+			protected List<Trip> getUserTripList(User user) {
+				return new ArrayList<Trip>();
+			}
+		};
+		
+		User user = new User();
+		User loggedUser = new User();
+		user.addFriend(loggedUser);
+
+		List<Trip> result = tripService.getTripsByUser(user , loggedUser);
+		
+		Assertions.assertEquals(0, result.size());
+	}
+	
+	@Test
+	public void check_user_logged_is_not_friend_with_empty_tripList() throws Exception {
 		TripService tripService = new TripService() {
 			@Override
 			protected List<Trip> getUserTripList(User user) {
