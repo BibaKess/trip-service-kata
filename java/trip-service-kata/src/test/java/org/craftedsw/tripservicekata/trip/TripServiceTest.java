@@ -42,7 +42,9 @@ public class TripServiceTest {
 		TripService tripService = new TripService() {
 			@Override
 			protected List<Trip> getUserTripList(User user) {
-				return new ArrayList<Trip>();
+				List<Trip> usertripList = new ArrayList<Trip>();
+				usertripList.add(new Trip());
+				return usertripList;
 			}
 		};
 		
@@ -52,7 +54,7 @@ public class TripServiceTest {
 
 		List<Trip> result = tripService.getTripsByUser(user , loggedUser);
 		
-		Assertions.assertEquals(0, result.size());
-		
+		Assertions.assertEquals(1, result.size());
+		Assertions.assertEquals(usertripList, result);
 	}
 }
