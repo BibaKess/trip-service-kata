@@ -27,15 +27,11 @@ public class TripService {
 	}
 
 
+	/**
+	 * @deprecated Use {@link org.craftedsw.tripservicekata.user.User#isFriend(User)} instead
+	 */
 	private boolean isFriend(User user, User loggedUser) {
-		boolean isFriend = false;
-		for (User friend : user.getFriends()) {
-			if (friend.equals(loggedUser)) {
-				isFriend = true;
-				break;
-			}
-		}
-		return isFriend;
+		return user.isFriend(loggedUser);
 	}
 
 
