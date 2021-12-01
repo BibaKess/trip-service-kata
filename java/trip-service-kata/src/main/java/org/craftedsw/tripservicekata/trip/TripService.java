@@ -21,15 +21,11 @@ public class TripService {
 
     public List<Trip> getTripsByUser(User user, User loggedUser) {
 		if (loggedUser != null) {
-			return user.isFriend(loggedUser) ? getUserTripList(user) : new ArrayList<Trip>();
+            return user.isFriend(loggedUser) ? tripDAO.getUserTripList(user) : new ArrayList<Trip>();
 		} else {
 			throw new UserNotLoggedInException();
 		}
 	}
 
 
-	protected List<Trip> getUserTripList(User user) {
-		return tripDAO.getUserTripList(user);
-	}
-	
 }
