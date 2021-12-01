@@ -40,13 +40,13 @@ public class TripServiceTest {
 	
 	@Test
 	public void check_user_logged_is_friend_with_not_empty_tripList() throws Exception {
-		List<Trip> usertripList = new ArrayList<Trip>();
-		usertripList.add(new Trip());
+		List<Trip> userTripList = new ArrayList<Trip>();
+		userTripList.add(new Trip());
 		
 		TripService tripService = new TripService() {
 			@Override
 			protected List<Trip> getUserTripList(User user) {
-				return usertripList;
+				return userTripList;
 			}
 		};
 		
@@ -56,7 +56,7 @@ public class TripServiceTest {
 
 		List<Trip> result = tripService.getTripsByUser(user , loggedUser);
 		
-		Assertions.assertEquals(usertripList, result);
+		Assertions.assertEquals(userTripList, result);
 		Assertions.assertEquals(1, result.size());
 	}
 	
