@@ -20,7 +20,6 @@ public class TripServiceTest {
 
     @Test
     public void guestsCantSeeTrips() throws Exception {
-        Mockito.doReturn(guest).when(tripService).getLoggedUser();
 
         User notImportant = null;
         tripService.getTripsByUser(notImportant, guest);
