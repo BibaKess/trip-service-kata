@@ -27,9 +27,8 @@ public class TripService {
 				}
 			}
 			
-			List<Trip> tripList = new ArrayList<Trip>();
 			if (isFriend) {
-				tripList = getUserTripList(user);
+				List<Trip> tripList tripList = getUserTripList(user);
 			}
 			return tripList;
 		} else {
