@@ -17,14 +17,14 @@ import org.mockito.Mockito;
     User traveler = new User();
 
     @Test
-    public void guestsCantSeeTrips() throws Exception {
+     void guestsCantSeeTrips() throws Exception {
 
         User notImportant = null;
         Assertions.assertThatThrownBy(() -> tripService.getTripsByUser(notImportant, guest));
     }
 
     @Test
-    public void viewerCantSeeTripsWhenTravelerHasNoFriends() throws Exception {
+     void viewerCantSeeTripsWhenTravelerHasNoFriends() throws Exception {
 
         List<Trip> trips = tripService.getTripsByUser(traveler, viewer);
 
@@ -32,7 +32,7 @@ import org.mockito.Mockito;
     }
 
     @Test
-    public void viewerCantSeeTripsOfTravelersHeIsNotFriendsWith() throws Exception {
+     void viewerCantSeeTripsOfTravelersHeIsNotFriendsWith() throws Exception {
         traveler.addFriend(new User());
 
         List<Trip> trips = tripService.getTripsByUser(traveler, viewer);
@@ -41,7 +41,7 @@ import org.mockito.Mockito;
     }
 
     @Test
-    public void viewerCanSeeTripsWhenFriendsWithTraveler() throws Exception {
+     void viewerCanSeeTripsWhenFriendsWithTraveler() throws Exception {
         List<Trip> trips = Arrays.asList(CORSE, ROME);
         Mockito.doReturn(trips).when(tripService).getUserTripList(traveler);
 
