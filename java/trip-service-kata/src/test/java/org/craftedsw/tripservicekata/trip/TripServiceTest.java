@@ -8,7 +8,7 @@ import org.craftedsw.tripservicekata.user.User;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-public class TripServiceTest {
+ class TripServiceTest {
     private static final Trip ROME = new Trip();
     private static final Trip CORSE = new Trip();
     TripService tripService = Mockito.spy(new TripService());
