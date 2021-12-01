@@ -47,7 +47,7 @@ public class TripServiceTest {
 		
 		User user = new User();
 		User loggedUser = new User();
-		user.addFriend(loggedUser);
+		user.addFriend(new User());
 
 		List<Trip> result = tripService.getTripsByUser(user , loggedUser);
 		
