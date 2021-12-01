@@ -17,7 +17,7 @@ public class TripServiceTest {
     User viewer = new User();
     User traveler = new User();
 
-    @Test(expected = UserNotLoggedInException.class)
+    @Test
     public void guestsCantSeeTrips() throws Exception {
         Mockito.doReturn(guest).when(tripService).getLoggedUser();
 
