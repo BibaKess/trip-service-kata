@@ -3,6 +3,7 @@ package org.craftedsw.tripservicekata.trip;
 import org.assertj.core.api.Assertions;
 import org.craftedsw.tripservicekata.user.UserNotLoggedInException;
 import org.craftedsw.tripservicekata.user.User;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
