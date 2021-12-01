@@ -1,10 +1,8 @@
 package org.craftedsw.tripservicekata.trip;
 
-import junit.framework.Assert;
 import org.assertj.core.api.Assertions;
 import org.craftedsw.tripservicekata.exception.UserNotLoggedInException;
 import org.craftedsw.tripservicekata.user.User;
-import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
