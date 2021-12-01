@@ -17,7 +17,7 @@ public class TripService {
 	}
 
 
-	protected List<Trip> getTripsByUser(User user, User loggedUser) throws UserNotLoggedInException {
+	protected List<Trip> getTripsByUser(User user, User loggedUser) {
 		if (loggedUser != null) {
 			boolean isFriend = isFriend(user, loggedUser);
 			return isFriend ? getUserTripList(user) : new ArrayList<Trip>();
