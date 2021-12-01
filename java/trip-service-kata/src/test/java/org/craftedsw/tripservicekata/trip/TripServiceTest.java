@@ -78,7 +78,8 @@ public class TripServiceTest {
 
 		List<Trip> result = tripService.getTripsByUser(user , loggedUser);
 		
-		Assertions.assertEquals(1, result.size());
-		Assertions.assertEquals(usertripList, result);
+		Assertions.assertNotEquals(usertripList, result);
+		Assertions.assertEquals(0, result.size());
+
 	}
 }
