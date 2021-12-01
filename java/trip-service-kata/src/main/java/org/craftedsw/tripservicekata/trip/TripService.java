@@ -26,6 +26,7 @@ public class TripService {
 					break;
 				}
 			}
+			
 			List<Trip> tripList = new ArrayList<Trip>();
 			if (isFriend) {
 				tripList = getUserTripList(user);
