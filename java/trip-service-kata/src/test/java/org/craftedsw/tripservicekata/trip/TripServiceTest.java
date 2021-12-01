@@ -34,7 +34,6 @@ public class TripServiceTest {
 		List<Trip> result = tripService.getTripsByUser(user , loggedUser);
 		
 		Assertions.assertEquals(0, result.size());
-		
 	}
 	
 	@Test
