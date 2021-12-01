@@ -36,6 +36,7 @@ public class TripServiceTest {
 		Assertions.assertEquals(0, result.size());
 	}
 	
+	
 	@Test
 	public void check_user_logged_with_not_empty_tripList() throws Exception {
 		TripService tripService = new TripService() {
